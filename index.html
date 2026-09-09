@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Siena Viva 2026 - Grande Torneo della Lizza, Fiera Mercantile, Riffa e progetto Nuovi Senesi." />
+  <title>Siena Viva 2026</title>
+  <style>
+    :root{
+      --bg:#0f0f12;
+      --panel:#17171d;
+      --panel-2:#20202a;
+      --text:#f5f1e8;
+      --muted:#b7b1a6;
+      --gold:#d8b15a;
+      --red:#8f1d2c;
+      --red-2:#b12c3c;
+      --line:rgba(255,255,255,.09);
+      --shadow:0 18px 50px rgba(0,0,0,.32);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(143,29,44,.20), transparent 35%),
+        radial-gradient(circle at 100% 20%, rgba(216,177,90,.10), transparent 30%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1180px,92%);margin:auto}
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:50;
+      backdrop-filter:blur(12px);
+      background:rgba(15,15,18,.82);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:20px;
+    }
+
+    .brand{
+      font-weight:800;
+      letter-spacing:.08em;
+      color:var(--gold);
+      white-space:nowrap;
+    }
+
+    .nav-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:18px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:.92rem;
+      color:#ddd5ca;
+    }
+
+    .nav-links a:hover{color:var(--gold)}
+
+    .hero{
+      min-height:88vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+    }
+
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(120deg, rgba(15,15,18,.94), rgba(15,15,18,.72)),
+        url("https://images.unsplash.com/photo-1529260830199-42c24126f198?auto=format&fit=crop&w=1800&q=80") center/cover;
+      z-index:-2;
+    }
+
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, var(--bg), transparent 45%);
+      z-index:-1;
+    }
+
+    .hero-content{padding:90px 0 70px;max-width:880px}
+
+    .eyebrow{
+      display:inline-block;
+      font-family:Arial, Helvetica, sans-serif;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.8rem;
+      color:var(--gold);
+      border:1px solid rgba(216,177,90,.35);
+      padding:8px 12px;
+      border-radius:999px;
+      margin-bottom:18px;
+      background:rgba(0,0,0,.28);
+    }
+
+    h1{
+      font-size:clamp(3.6rem,10vw,8rem);
+      line-height:.9;
+      margin:0;
+      letter-spacing:-.04em;
+      text-transform:uppercase;
+    }
+
+    h1 span{color:var(--gold)}
+    .hero-sub{
+      font-size:clamp(1.2rem,2.5vw,1.75rem);
+      color:#eee5d8;
+      max-width:760px;
+      margin:24px 0 14px;
+    }
+
+    .hero-date{
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:1rem;
+      color:#d9d0c4;
+      margin-bottom:30px;
+    }
+
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:13px 20px;
+      border-radius:10px;
+      font-family:Arial, Helvetica, sans-serif;
+      font-weight:700;
+      transition:.2s ease;
+      border:1px solid transparent;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--red),var(--red-2));
+      color:white;
+      box-shadow:var(--shadow);
+    }
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-ghost{
+      border-color:rgba(255,255,255,.18);
+      background:rgba(255,255,255,.04);
+    }
+    .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+
+    section{padding:82px 0;border-bottom:1px solid var(--line)}
+    .section-kicker{
+      color:var(--gold);
+      font-family:Arial, Helvetica, sans-serif;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      font-size:.78rem;
+      margin-bottom:8px;
+    }
+    h2{
+      font-size:clamp(2rem,5vw,3.6rem);
+      line-height:1.05;
+      margin:0 0 18px;
+    }
+    .lead{
+      color:var(--muted);
+      font-size:1.15rem;
+      max-width:820px;
+      margin-bottom:34px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+    .stat{
+      background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.025));
+      border:1px solid var(--line);
+      padding:28px;
+      border-radius:18px;
+      box-shadow:var(--shadow);
+    }
+    .stat strong{
+      display:block;
+      font-size:2.3rem;
+      color:var(--gold);
+      line-height:1;
+      margin-bottom:8px;
+    }
+    .stat span{
+      font-family:Arial, Helvetica, sans-serif;
+      color:#d2cbc0;
+      font-size:.95rem;
+    }
+
+    .grid-4,.grid-3,.grid-2{
+      display:grid;
+      gap:18px;
+    }
+    .grid-4{grid-template-columns:repeat(4,1fr)}
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+
+    .card{
+      background:linear-gradient(180deg,var(--panel),#131318);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:26px;
+      box-shadow:var(--shadow);
+    }
+    .card h3{margin:8px 0 10px;font-size:1.45rem}
+    .card p{margin:0;color:var(--muted)}
+    .icon{font-size:2rem}
+
+    .prize{
+      text-align:center;
+      padding:34px 24px;
+    }
+    .prize .place{
+      font-family:Arial, Helvetica, sans-serif;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+      font-size:.8rem;
+    }
+    .prize .money{
+      font-size:2.8rem;
+      font-weight:800;
+      color:var(--gold);
+      margin:8px 0 4px;
+    }
+
+    .timeline{
+      display:grid;
+      gap:14px;
+      max-width:900px;
+    }
+    .timeline-item{
+      display:grid;
+      grid-template-columns:170px 1fr;
+      gap:22px;
+      align-items:start;
+      padding:20px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .timeline-date{
+      color:var(--gold);
+      font-family:Arial, Helvetica, sans-serif;
+      font-weight:800;
+    }
+    .timeline-item h3{margin:0 0 6px}
+    .timeline-item p{margin:0;color:var(--muted)}
+
+    .city{
+      position:relative;
+      overflow:hidden;
+      min-height:210px;
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+    }
+    .city::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.82), rgba(0,0,0,.08));
+      z-index:0;
+    }
+    .city > *{position:relative;z-index:1}
+    .city h3{font-size:1.7rem;margin:0}
+    .city p{color:#ddd5ca}
+
+    .raffle-box{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:24px;
+      align-items:center;
+    }
+
+    .numbers{
+      display:grid;
+      grid-template-columns:repeat(10,1fr);
+      gap:7px;
+    }
+    .num{
+      aspect-ratio:1;
+      display:grid;
+      place-items:center;
+      border-radius:8px;
+      background:#20202a;
+      border:1px solid rgba(216,177,90,.18);
+      color:#eee8df;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:.78rem;
+    }
+    .num:nth-child(7n){background:#2b2024}
+    .num:nth-child(11n){color:var(--gold)}
+
+    .transfer-box{
+      background:
+        linear-gradient(135deg,rgba(143,29,44,.28),rgba(216,177,90,.08)),
+        var(--panel);
+      border:1px solid rgba(216,177,90,.24);
+      border-radius:22px;
+      padding:34px;
+    }
+    .transfer-box strong.big{
+      display:block;
+      font-size:3rem;
+      color:var(--gold);
+      line-height:1;
+      margin:12px 0;
+    }
+
+    .quote{
+      font-size:clamp(1.7rem,4vw,3rem);
+      line-height:1.15;
+      max-width:900px;
+      margin:0;
+    }
+
+    footer{
+      padding:50px 0;
+      text-align:center;
+      color:#9f978c;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:.9rem;
+    }
+
+    @media (max-width:900px){
+      .stats,.grid-4,.grid-3,.grid-2,.raffle-box{grid-template-columns:1fr 1fr}
+      .timeline-item{grid-template-columns:1fr}
+      .numbers{grid-template-columns:repeat(8,1fr)}
+    }
+
+    @media (max-width:640px){
+      .nav-links{display:none}
+      .hero{min-height:78vh}
+      .stats,.grid-4,.grid-3,.grid-2,.raffle-box{grid-template-columns:1fr}
+      .numbers{grid-template-columns:repeat(5,1fr)}
+      section{padding:62px 0}
+      .stat{padding:22px}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">SIENA VIVA</a>
+    <div class="nav-links">
+      <a href="#progetto">Progetto</a>
+      <a href="#torneo">Torneo</a>
+      <a href="#calendario">Calendario</a>
+      <a href="#fiera">Fiera</a>
+      <a href="#riffa">Riffa</a>
+      <a href="#nuovi-senesi">Nuovi Senesi</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-content">
+    <div class="eyebrow">Repubblica di Siena · Novembre 2026</div>
+    <h1>SIENA <span>VIVA</span></h1>
+    <p class="hero-sub">
+      Due settimane per riportare persone, commercio, gioco e vita nelle città della Repubblica.
+    </p>
+    <div class="hero-date">12–25 novembre 2026 · Siena · Grosseto · Orbetello · Santa Fiora</div>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#torneo">Scopri il Torneo</a>
+      <a class="btn btn-ghost" href="#nuovi-senesi">Progetto Nuovi Senesi</a>
+    </div>
+  </div>
+</header>
+
+<section id="progetto">
+  <div class="wrap">
+    <div class="section-kicker">L'idea</div>
+    <h2>Non un semplice torneo.<br>Un evento per rimettere Siena in movimento.</h2>
+    <p class="lead">
+      Siena Viva nasce con un obiettivo preciso: creare un motivo forte per far arrivare persone nella Repubblica e trasformare una parte di quell'afflusso in commercio, socialità e nuovi residenti.
+    </p>
+
+    <div class="stats">
+      <div class="stat"><strong>64</strong><span>lizzatori massimo</span></div>
+      <div class="stat"><strong>7.000</strong><span>ducati di montepremi garantito</span></div>
+      <div class="stat"><strong>100</strong><span>numeri della Grande Riffa</span></div>
+      <div class="stat"><strong>500</strong><span>ducati per ogni nuovo residente</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-kicker">Quattro pilastri</div>
+    <h2>Gioco, commercio, socialità, ripopolamento.</h2>
+    <div class="grid-4">
+      <div class="card">
+        <div class="icon">⚔️</div>
+        <h3>Grande Lizza</h3>
+        <p>Gironi nelle quattro città, eliminazione diretta e finalissima a Siena.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧺</div>
+        <h3>Fiera Mercantile</h3>
+        <p>Mercanti esterni invitati a Siena per vendere, acquistare e creare nuovi contatti.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎟️</div>
+        <h3>Grande Riffa</h3>
+        <p>100 numeri, 100 premi. L'incasso finanzia direttamente i nuovi trasferimenti.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🏡</div>
+        <h3>Nuovi Senesi</h3>
+        <p>500 ducati in due tranche per chi si trasferisce davvero e acquista un campo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="torneo">
+  <div class="wrap">
+    <div class="section-kicker">Grande Torneo della Lizza</div>
+    <h2>64 concorrenti. 4 città. Un solo Campione.</h2>
+    <p class="lead">
+      I partecipanti vengono divisi in gironi da quattro. Tutti affrontano tutti una volta. Vittoria: 3 punti. I primi due di ogni girone si qualificano.
+    </p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Formula</h3>
+        <p>
+          16 gironi da 4 persone. Ogni girone richiede 6 incontri. Con 64 iscritti ogni città ospita 4 gironi e 16 concorrenti.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Orari</h3>
+        <p>
+          Tre incontri per città ogni sera: <b>21:30</b>, <b>22:30</b> e <b>23:30</b>. Le quattro città giocano contemporaneamente.
+        </p>
+      </div>
+    </div>
+
+    <div style="height:24px"></div>
+
+    <div class="grid-3">
+      <div class="card prize">
+        <div class="place">1° classificato</div>
+        <div class="money">4.000</div>
+        <div>ducati</div>
+      </div>
+      <div class="card prize">
+        <div class="place">2° classificato</div>
+        <div class="money">2.000</div>
+        <div>ducati</div>
+      </div>
+      <div class="card prize">
+        <div class="place">3° classificato</div>
+        <div class="money">1.000</div>
+        <div>ducati</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-kicker">Le città</div>
+    <h2>Tutta la Repubblica entra in gioco.</h2>
+    <div class="grid-4">
+      <div class="card city">
+        <h3>Siena</h3>
+        <p>Gironi, fiera e finalissima.</p>
+      </div>
+      <div class="card city">
+        <h3>Grosseto</h3>
+        <p>Gironi, quarti e semifinali.</p>
+      </div>
+      <div class="card city">
+        <h3>Orbetello</h3>
+        <p>Gironi e fase eliminatoria.</p>
+      </div>
+      <div class="card city">
+        <h3>Santa Fiora</h3>
+        <p>Gironi, quarti e semifinali.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="calendario">
+  <div class="wrap">
+    <div class="section-kicker">Calendario</div>
+    <h2>Dal 12 al 25 novembre.</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">12–19 novembre</div>
+        <div>
+          <h3>Fase a gironi</h3>
+          <p>Gironi disputati in parallelo a Siena, Grosseto, Orbetello e Santa Fiora.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">20–21 novembre</div>
+        <div>
+          <h3>Sedicesimi</h3>
+          <p>32 qualificati. Primi classificati contro secondi provenienti da città differenti.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">22 novembre</div>
+        <div>
+          <h3>Ottavi</h3>
+          <p>16 concorrenti, 8 incontri. Restano gli otto migliori.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">23 novembre</div>
+        <div>
+          <h3>Quarti</h3>
+          <p>Due quarti a Grosseto e due quarti a Santa Fiora.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">24 novembre</div>
+        <div>
+          <h3>Semifinali</h3>
+          <p>Una semifinale a Grosseto e una a Santa Fiora, entrambe alle 21:30.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">25 novembre</div>
+        <div>
+          <h3>Gran Finale a Siena</h3>
+          <p>21:30 finale per il terzo posto. 22:30 Finalissima della Repubblica e premiazione.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fiera">
+  <div class="wrap">
+    <div class="section-kicker">Grande Fiera Mercantile</div>
+    <h2>Portare a Siena persone, merci e commercio.</h2>
+    <p class="lead">
+      Mercanti, compagnie e artigiani provenienti da altre Province saranno invitati a partecipare gratuitamente alla Fiera, con la possibilità di presentare in anticipo merci disponibili e beni ricercati.
+    </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="icon">📦</div>
+        <h3>Vendere</h3>
+        <p>Spazio per portare e mettere sul mercato la propria mercanzia.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🤝</div>
+        <h3>Comprare</h3>
+        <p>Domanda e offerta possono incontrarsi durante tutto l'evento.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🌍</div>
+        <h3>Creare contatti</h3>
+        <p>Nuovi rapporti commerciali tra Siena e mercanti esterni.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="riffa">
+  <div class="wrap">
+    <div class="section-kicker">Grande Riffa Siena Viva</div>
+    <h2>100 numeri. 100 premi.</h2>
+
+    <div class="raffle-box">
+      <div>
+        <p class="lead">
+          Ogni numero costa <b>50 ducati</b> e nasconde un premio. Tutti i numeri sono vincenti.
+          I premi vengono raccolti separatamente attraverso donazioni di mercanti, cittadini, compagnie e sostenitori.
+        </p>
+        <div class="card">
+          <h3>Se vendiamo tutti i numeri</h3>
+          <p><b>100 × 50 = 5.000 ducati</b></p>
+          <p style="margin-top:8px">Il 100% dell'incasso confluisce nel Fondo "Nuovi Senesi".</p>
+        </div>
+      </div>
+
+      <div class="numbers">
+        <div class="num">1</div><div class="num">2</div><div class="num">3</div><div class="num">4</div><div class="num">5</div><div class="num">6</div><div class="num">7</div><div class="num">8</div><div class="num">9</div><div class="num">10</div><div class="num">11</div><div class="num">12</div><div class="num">13</div><div class="num">14</div><div class="num">15</div><div class="num">16</div><div class="num">17</div><div class="num">18</div><div class="num">19</div><div class="num">20</div><div class="num">21</div><div class="num">22</div><div class="num">23</div><div class="num">24</div><div class="num">25</div><div class="num">26</div><div class="num">27</div><div class="num">28</div><div class="num">29</div><div class="num">30</div><div class="num">31</div><div class="num">32</div><div class="num">33</div><div class="num">34</div><div class="num">35</div><div class="num">36</div><div class="num">37</div><div class="num">38</div><div class="num">39</div><div class="num">40</div><div class="num">41</div><div class="num">42</div><div class="num">43</div><div class="num">44</div><div class="num">45</div><div class="num">46</div><div class="num">47</div><div class="num">48</div><div class="num">49</div><div class="num">50</div><div class="num">51</div><div class="num">52</div><div class="num">53</div><div class="num">54</div><div class="num">55</div><div class="num">56</div><div class="num">57</div><div class="num">58</div><div class="num">59</div><div class="num">60</div><div class="num">61</div><div class="num">62</div><div class="num">63</div><div class="num">64</div><div class="num">65</div><div class="num">66</div><div class="num">67</div><div class="num">68</div><div class="num">69</div><div class="num">70</div><div class="num">71</div><div class="num">72</div><div class="num">73</div><div class="num">74</div><div class="num">75</div><div class="num">76</div><div class="num">77</div><div class="num">78</div><div class="num">79</div><div class="num">80</div><div class="num">81</div><div class="num">82</div><div class="num">83</div><div class="num">84</div><div class="num">85</div><div class="num">86</div><div class="num">87</div><div class="num">88</div><div class="num">89</div><div class="num">90</div><div class="num">91</div><div class="num">92</div><div class="num">93</div><div class="num">94</div><div class="num">95</div><div class="num">96</div><div class="num">97</div><div class="num">98</div><div class="num">99</div><div class="num">100</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="nuovi-senesi">
+  <div class="wrap">
+    <div class="section-kicker">Progetto Nuovi Senesi</div>
+    <h2>Non basta farli arrivare. Dobbiamo provare a farli restare.</h2>
+
+    <div class="transfer-box">
+      <span>INCENTIVO FINO A</span>
+      <strong class="big">500 DUCATI</strong>
+      <p>
+        Il contributo viene erogato in due tranche da 250 ducati a chi trasferisce realmente la residenza nella Repubblica.
+      </p>
+
+      <div class="grid-2" style="margin-top:24px">
+        <div class="card">
+          <h3>Prima tranche · 250 ducati</h3>
+          <p>
+            Dopo il trasferimento della residenza e l'impegno ad acquistare almeno un campo entro 15 giorni.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Seconda tranche · 250 ducati</h3>
+          <p>
+            Dopo l'acquisto effettivo del campo e almeno 30 giorni continuativi di residenza nella Repubblica.
+          </p>
+        </div>
+      </div>
+
+      <p style="margin-top:22px;color:#d8d0c4">
+        Con 5.000 ducati raccolti dalla Riffa possono essere finanziati fino a <b>10 nuovi trasferimenti</b>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-kicker">Un progetto che guarda avanti</div>
+    <p class="quote">
+      “Siena Viva non deve essere un evento isolato. L'obiettivo è trasformarlo in un appuntamento annuale della Repubblica.”
+    </p>
+    <p class="lead" style="margin-top:24px">
+      Se la prima edizione funzionerà, ogni novembre Siena Viva potrà tornare con Torneo, Fiera, Riffa, attività nelle quattro città e nuove iniziative per attrarre residenti.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center">
+    <div class="section-kicker">Il messaggio</div>
+    <h2>Vieni per giocare.<br>Vieni per commerciare.<br><span style="color:var(--gold)">Vieni per conoscere Siena.</span></h2>
+    <p class="lead" style="margin-left:auto;margin-right:auto">
+      E magari resta.
+    </p>
+    <a href="#top" class="btn btn-primary">Torna in alto</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <b>SIENA VIVA 2026</b><br>
+    Proposta per un grande evento annuale della Repubblica di Siena.
+  </div>
+</footer>
+
+</body>
+</html>
